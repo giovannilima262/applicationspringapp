@@ -1,0 +1,58 @@
+<div class="container">
+  <div><button class="btn btn-link" (click)="logout()">Sair</button></div>
+  <div>
+    <div>
+      <b>Produtos</b>
+      <button class="btn btn-primary btn-right" type="button" (click)="open()">
+        Adicionar Produto
+      </button>
+    </div>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Descrição</th>
+        <th scope="col">Preço</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <th scope="row">{{ product.id }}</th>
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>
+          <input
+            type="url"
+            disabled="true"
+            currencyMask
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+            min="0.0"
+            class="form-control"
+            [(ngModel)]="product.price"
+          />
+        </td>
+        <td>
+          <div class="btn-right max-width">
+            <button
+              class="btn btn-primary margin-right"
+              type="button"
+              (click)="edit(product.id)"
+            >
+              Editar
+            </button>
+            <button
+              class="btn btn-primary"
+              type="button"
+              (click)="remove(product.id)"
+            >
+              Excluir
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
